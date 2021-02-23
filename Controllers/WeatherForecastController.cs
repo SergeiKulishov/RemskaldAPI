@@ -25,7 +25,7 @@ namespace WebApplicationTEST.Controllers
 
         
         [HttpGet("accums")]
-        public ActionResult<string> GetAccums()
+        public async Task<string> GetAccums()
         {
 
 
