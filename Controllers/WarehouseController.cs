@@ -9,30 +9,30 @@ namespace WebApplicationTEST.Controllers
 {
     [ApiController]
     [Route("[controller]")]
-    public class WeatherForecastController : ControllerBase
+    public class WarehouseController : ControllerBase
     {
-        private static readonly string[] Summaries = new[]
+        [HttpPost("UpdateDatabase")]
+        public async Task<string> UpdateDatabase()
         {
-            "Freezing", "Bracing", "Chilly", "Cool", "Mild", "Warm", "Balmy", "Hot", "Sweltering", "Scorching"
-        };
-
-        private readonly ILogger<WeatherForecastController> _logger;
-
-        public WeatherForecastController(ILogger<WeatherForecastController> logger)
-        {
-            _logger = logger;
+            try
+            {
+                Dictionary<string, Datum> ItemsFromWarehouse = ConnectionWithRemonline.GetItemByArticle(await ConnectionWithRemonline.GetCollectionOfItems(), Repository.GetAllArticlesOfItemWhatWeNeed());
+                //Repository.Add(ItemsFromWarehouse);
+                Repository.Update(ItemsFromWarehouse);
+                
+                return "WarehouseItems has updated";
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.StackTrace);
+                Console.WriteLine("Обновление не удалось");
+                return "Updating is fail";
+            }
         }
 
-        
         [HttpGet("accums")]
-        public async Task<string> GetAccums()
+        public ActionResult<string> GetAccums()
         {
-
-
-            //Dictionary<string, Datum> ItemsFromWarehouse = ConnectionWithRemonline.GetItemByArticle(await ConnectionWithRemonline.GetCollectionOfItems(), Repository.GetAllArticlesOfItemWhatWeNeed());
-            //Repository.Add(ItemsFromWarehouse);
-
-            //Repository.Update(ItemsFromWarehouse);
             var art = Repository.articlesOfAccums;
             List<Datum> data = Repository.FetchData();
             List<Datum> filtered = new List<Datum>();
