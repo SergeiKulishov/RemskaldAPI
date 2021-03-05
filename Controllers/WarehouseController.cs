@@ -33,16 +33,16 @@ namespace WebApplicationTEST.Controllers
         [HttpGet("accums")]
         public ActionResult<string> GetAccums()
         {
-            var filtered = Repository.GetAccumulatorData();
+            var filtered = Repository.FetchAccumulatorData();
             string jsondata = Newtonsoft.Json.JsonConvert.SerializeObject(filtered);
             Console.WriteLine(jsondata);
             return jsondata;
         }
 
-        [HttpGet("disp")]
-        public ActionResult<string> GetDisp()
+        [HttpGet("disp-orig")]
+        public ActionResult<string> GetDispOrig()
         {
-            var filtered = Repository.FetchDisplayData(); 
+            var filtered = Repository.FetchOrigDisplayData(); 
             string jsondata = Newtonsoft.Json.JsonConvert.SerializeObject(filtered);
             Console.WriteLine(jsondata);
             return jsondata;
