@@ -5,6 +5,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="f9e0ec91-853b-4a97-ae72-c203afd4c0fd" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.WebApplicationTEST/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.WebApplicationTEST/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Controllers/WarehouseController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Controllers/WarehouseController.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Repository.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Repository.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -18,6 +20,7 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
+        <option value="$PROJECT_DIR$/Controllers/WarehouseController.cs" />
         <option value="$PROJECT_DIR$/Repository.cs" />
       </list>
     </option>
@@ -30,6 +33,8 @@
   <component name="PropertiesComponent">
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="nodejs_package_manager_path" value="npm" />
+    <property name="settings.editor.selected.configurable" value="terminal" />
     <property name="vue.rearranger.settings.migration" value="true" />
   </component>
   <component name="RunManager" selected=".NET Launch Settings Profile.WebApplicationTEST">
@@ -73,6 +78,7 @@
       <option name="presentableId" value="Default" />
       <updated>1614937644724</updated>
       <workItem from="1614937654327" duration="240000" />
+      <workItem from="1615036365146" duration="3025000" />
     </task>
     <servers />
   </component>
@@ -81,5 +87,11 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="true" />
+  </component>
+  <component name="WindowStateProjectService">
+    <state x="461" y="164" key="SettingsEditor" timestamp="1615039233054">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="461" y="164" key="SettingsEditor/0.0.1920.1040/1920.0.1024.728@0.0.1920.1040" timestamp="1615039233054" />
   </component>
 </project>

@@ -58,8 +58,7 @@ namespace WebApplicationTEST
             {
                 foreach (KeyValuePair<string, Datum> kvp in ItemsFromWarehouse)
                 {
-                    // добавляем их в бд
-                    db.Datums.Add(kvp.Value)
+                    db.Datums.Add(kvp.Value);
                 }
                 db.SaveChanges();
                 Console.WriteLine("Объекты успешно добавлены");
@@ -72,7 +71,6 @@ namespace WebApplicationTEST
             {
                 foreach (KeyValuePair<string, Datum> kvp in ItemsFromWarehouse)
                 {
-                    //обновляем их в бд
                     db.Datums.Update(kvp.Value);
                 }
                 db.SaveChanges();
@@ -86,7 +84,6 @@ namespace WebApplicationTEST
 
             using (ApplicationContext db = new ApplicationContext())
             {
-                // получаем объекты из бд и выводим на консоль
                 items = db.Datums.ToList();
                 Console.WriteLine("Список объектов:");
                 foreach (var i in items)
@@ -97,7 +94,7 @@ namespace WebApplicationTEST
             return items;
         }
 
-        public static List<Datum> FetchOrigDisplayData()
+        public static IEnumerable<Datum> FetchOrigDisplayData()
         {
             var art = Repository.articlesOfDisplayOrig;
             List<Datum> data = Repository.FetchData();
