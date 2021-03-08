@@ -1,13 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace WebApplicationTEST
-
 {
-   public class Repository
+   public static class Repository
     {
         public static string[] articlesOfAccums { get; } = { "1010", "1020", "1030", "1050", "1060", "1070", "1080", "1090", "1110", "1120", "1128",
                                                              "1129", "1125","8895", "8897", "8896" };
@@ -52,26 +49,26 @@ namespace WebApplicationTEST
             return allArticles;
         }
 
-        public static void Add(Dictionary<string, Datum> ItemsFromWarehouse)
+        public static void Add(Dictionary<string, Datum> itemsFromWarehouse)
         {
             using (ApplicationContext db = new ApplicationContext())
             {
-                foreach (KeyValuePair<string, Datum> kvp in ItemsFromWarehouse)
+                foreach (KeyValuePair<string, Datum> kvp in itemsFromWarehouse)
                 {
-                    db.Datums.Add(kvp.Value);
+                    db.datums.Add(kvp.Value);
                 }
                 db.SaveChanges();
                 Console.WriteLine("Объекты успешно добавлены");
             }
         }
             
-        public static void Update(Dictionary<string, Datum> ItemsFromWarehouse)
+        public static void Update(Dictionary<string, Datum> itemsFromWarehouse)
         {
             using (ApplicationContext db = new ApplicationContext())
             {
-                foreach (KeyValuePair<string, Datum> kvp in ItemsFromWarehouse)
+                foreach (KeyValuePair<string, Datum> kvp in itemsFromWarehouse)
                 {
-                    db.Datums.Update(kvp.Value);
+                    db.datums.Update(kvp.Value);
                 }
                 db.SaveChanges();
                 Console.WriteLine("Объекты успешно обновлены");
@@ -84,7 +81,7 @@ namespace WebApplicationTEST
 
             using (ApplicationContext db = new ApplicationContext())
             {
-                items = db.Datums.ToList();
+                items = db.datums.ToList();
                 Console.WriteLine("Список объектов:");
                 foreach (var i in items)
                 {

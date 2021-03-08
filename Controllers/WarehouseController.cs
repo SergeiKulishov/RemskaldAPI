@@ -16,15 +16,15 @@ namespace WebApplicationTEST.Controllers
         {
             try
             {
-                Dictionary<string, Datum> ItemsFromWarehouse = ConnectionWithRemonline.GetItemByArticle(await ConnectionWithRemonline.GetCollectionOfItems(), Repository.GetAllArticlesOfItemWhatWeNeed());
+                Dictionary<string, Datum> itemsFromWarehouse = ConnectionWithRemonline.GetItemByArticle(await ConnectionWithRemonline.GetCollectionOfItems(), Repository.GetAllArticlesOfItemWhatWeNeed());
                 //Repository.Add(ItemsFromWarehouse);
                 try
                 {
-                    Repository.Update(ItemsFromWarehouse);
+                    Repository.Update(itemsFromWarehouse);
                 }
                 catch
                 {
-                    Repository.Add(ItemsFromWarehouse);
+                    Repository.Add(itemsFromWarehouse);
                 }
                 return "WarehouseItems has updated";
             }

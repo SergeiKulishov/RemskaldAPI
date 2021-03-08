@@ -9,22 +9,17 @@ namespace WebApplicationTEST
 {
     public class ConnectionWithRemonline
     {
-        protected static string responseToken;
+        private static string responseToken { get; set; }
 
         public static async Task PostRequestAsync()
         {
             WebRequest request = WebRequest.Create("https://api.remonline.ru/token/new");
-            request.Method = "POST"; // для отправки используется метод Post
-                                     // данные для отправки
+            request.Method = "POST"; 
             string data = "api_key=a49d338c1466430e9568ca6ea77c5cda";
-            // преобразуем данные в массив байтов
             byte[] byteArray = System.Text.Encoding.UTF8.GetBytes(data);
-            // устанавливаем тип содержимого - параметр ContentType
             request.ContentType = "application/x-www-form-urlencoded";
-            // Устанавливаем заголовок Content-Length запроса - свойство ContentLength
             request.ContentLength = byteArray.Length;
 
-            //записываем данные в поток запроса
             using (Stream dataStream = request.GetRequestStream())
             {
                 dataStream.Write(byteArray, 0, byteArray.Length);
@@ -55,13 +50,10 @@ namespace WebApplicationTEST
 
         public static string GetPageFromRemonline(string token,int page)
         {
-            // Адрес ресурса, к которому выполняется запрос
             string url = $"https://api.remonline.ru/warehouse/goods/28208?page={page}&token={token}";
 
-            // Создаём объект WebClient
             using  (var webClient = new WebClient())
             {
-                // Выполняем запрос по адресу и получаем ответ в виде строки
                 var response =  webClient.DownloadString(url);
                 
                 return response;
@@ -70,19 +62,19 @@ namespace WebApplicationTEST
         }
 
         public static async Task<List<Item>> GetCollectionOfItems(int pageCount = 26){
-            List<Item> ListItem = new List<Item>();
+            List<Item> listItem = new List<Item>();
             for (var i = 1; i < pageCount; i++)
             {
                 string responceMessage = ConnectionWithRemonline.GetPageFromRemonline(await ConnectionWithRemonline.GetToken(), i);
                 Item thing = JsonConvert.DeserializeObject<Item>(responceMessage);
-                ListItem.Add(thing);
+                listItem.Add(thing);
             }
-            return ListItem;
+            return listItem;
         }
 
         public static Dictionary<string,Datum> GetItemByArticle(IEnumerable<Item> ListofItems,IEnumerable<string> arrayOfArticles)
         {
-            Dictionary<string,Datum> ItemsfromWarehouse = new Dictionary<string,Datum>();
+            Dictionary<string,Datum> itemsfromWarehouse = new Dictionary<string,Datum>();
         
             foreach(var s in ListofItems)
             {
@@ -94,11 +86,10 @@ namespace WebApplicationTEST
                         foreach(string i in arrayOfArticles ){
                             if (p.article == i)
                             {
-                                ItemsfromWarehouse.Add(p.article,p);    
+                                itemsfromWarehouse.Add(p.article,p);    
                             }  
                             
                         }
-                    // Console.WriteLine(p.title);
                     }
                     catch (System.Exception)
                     {   if(p.article == null){
@@ -114,7 +105,7 @@ namespace WebApplicationTEST
                     
                 }
             }
-            return ItemsfromWarehouse;
+            return itemsfromWarehouse;
         }
 
     }

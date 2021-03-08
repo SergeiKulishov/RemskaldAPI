@@ -6,9 +6,9 @@ using System.Text;
 namespace WebApplicationTEST
 
 {
-    public class ApplicationContext : DbContext
+    public sealed class ApplicationContext : DbContext
     {
-        public DbSet<Datum> Datums { get; set; }
+        public DbSet<Datum> datums { get; set; }
 
         public ApplicationContext()
         {
