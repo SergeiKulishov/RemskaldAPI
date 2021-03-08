@@ -18,8 +18,14 @@ namespace WebApplicationTEST.Controllers
             {
                 Dictionary<string, Datum> ItemsFromWarehouse = ConnectionWithRemonline.GetItemByArticle(await ConnectionWithRemonline.GetCollectionOfItems(), Repository.GetAllArticlesOfItemWhatWeNeed());
                 //Repository.Add(ItemsFromWarehouse);
-                Repository.Update(ItemsFromWarehouse);
-                
+                try
+                {
+                    Repository.Update(ItemsFromWarehouse);
+                }
+                catch
+                {
+                    Repository.Add(ItemsFromWarehouse);
+                }
                 return "WarehouseItems has updated";
             }
             catch (Exception ex)
@@ -43,6 +49,24 @@ namespace WebApplicationTEST.Controllers
         public ActionResult<string> GetDispOrig()
         {
             var filtered = Repository.FetchOrigDisplayData(); 
+            string jsondata = Newtonsoft.Json.JsonConvert.SerializeObject(filtered);
+            Console.WriteLine(jsondata);
+            return jsondata;
+        }
+
+        [HttpGet("disp-copy")]
+        public ActionResult<string> GetDispCopy()
+        {
+            var filtered = Repository.FetchCopyDisplayData();
+            string jsondata = Newtonsoft.Json.JsonConvert.SerializeObject(filtered);
+            Console.WriteLine(jsondata);
+            return jsondata;
+        }
+
+        [HttpGet("main-cameras")]
+        public ActionResult<string> GetCameras()
+        {
+            var filtered = Repository.FetchMainCamerasData();
             string jsondata = Newtonsoft.Json.JsonConvert.SerializeObject(filtered);
             Console.WriteLine(jsondata);
             return jsondata;
