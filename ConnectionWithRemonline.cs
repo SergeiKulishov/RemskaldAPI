@@ -61,9 +61,9 @@ namespace WebApplicationTEST
             
         }
 
-        public static async Task<List<Item>> GetCollectionOfItems(int pageCount = 26){
+        public static async Task<List<Item>> GetCollectionOfItems(int pageCount = 31){
             List<Item> listItem = new List<Item>();
-            for (var i = 1; i < pageCount; i++)
+            for (var i = 1; i <= pageCount; i++)
             {
                 string responceMessage = ConnectionWithRemonline.GetPageFromRemonline(await ConnectionWithRemonline.GetToken(), i);
                 Item thing = JsonConvert.DeserializeObject<Item>(responceMessage);
