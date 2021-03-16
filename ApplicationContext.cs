@@ -8,7 +8,7 @@ namespace WebApplicationTEST
 {
     public sealed class ApplicationContext : DbContext
     {
-        public DbSet<Datum> datums { get; set; }
+        public DbSet<Datum> Datums { get; set; }
 
         public ApplicationContext()
         {
