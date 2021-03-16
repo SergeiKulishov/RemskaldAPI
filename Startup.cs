@@ -39,6 +39,8 @@ namespace WebApplicationTEST
             app.UseHttpsRedirection();
 
             app.UseRouting();
+            // подключаем CORS
+            app.UseCors(builder => builder.AllowAnyOrigin());
 
             app.UseAuthorization();
 
