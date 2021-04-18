@@ -61,7 +61,7 @@ namespace WebApplicationTEST
             
         }
 
-        public static async Task<List<Item>> GetCollectionOfItems(int pageCount = 31){
+        public static async Task<List<Item>> GetCollectionOfItems(int pageCount = 29){
             List<Item> listItem = new List<Item>();
             for (var i = 1; i <= pageCount; i++)
             {
