@@ -36,6 +36,15 @@ namespace WebApplicationTEST.Controllers
             }
         }
 
+        [HttpGet("all-items")]
+        public ActionResult<string> GetAllItems()
+        {
+            var filtered = Repository.FetchData();
+            string jsondata = Newtonsoft.Json.JsonConvert.SerializeObject(filtered);
+            Console.WriteLine(jsondata);
+            return jsondata;
+        }
+
         [HttpGet("accums")]
         public ActionResult<string> GetAccums()
         {
