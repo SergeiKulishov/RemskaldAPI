@@ -1,10 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 
 namespace WebApplicationTEST
+
 {
-   public static class Repository
+    public class Repository
     {
         public static string[] articlesOfAccums { get; } = { "1010", "1020", "1030", "1050", "1060", "1070", "1080", "1090", "1110", "1120", "1128",
                                                              "1129", "1125","8895", "8897", "8896","8970", "8971" };
@@ -49,12 +52,13 @@ namespace WebApplicationTEST
             return allArticles;
         }
 
-        public static void Add(Dictionary<string, Datum> itemsFromWarehouse)
+        public static void Add(Dictionary<string, Datum> ItemsFromWarehouse)
         {
             using (ApplicationContext db = new ApplicationContext())
             {
-                foreach (KeyValuePair<string, Datum> kvp in itemsFromWarehouse)
+                foreach (KeyValuePair<string, Datum> kvp in ItemsFromWarehouse)
                 {
+                    // добавляем их в бд
                     db.Datums.Add(kvp.Value);
                 }
                 db.SaveChanges();
@@ -62,12 +66,13 @@ namespace WebApplicationTEST
             }
         }
             
-        public static void Update(Dictionary<string, Datum> itemsFromWarehouse)
+        public static void Update(Dictionary<string, Datum> ItemsFromWarehouse)
         {
             using (ApplicationContext db = new ApplicationContext())
             {
-                foreach (KeyValuePair<string, Datum> kvp in itemsFromWarehouse)
+                foreach (KeyValuePair<string, Datum> kvp in ItemsFromWarehouse)
                 {
+                    //обновляем их в бд
                     db.Datums.Update(kvp.Value);
                 }
                 db.SaveChanges();
@@ -81,6 +86,7 @@ namespace WebApplicationTEST
 
             using (ApplicationContext db = new ApplicationContext())
             {
+                // получаем объекты из бд и выводим на консоль
                 items = db.Datums.ToList();
                 Console.WriteLine("Список объектов:");
                 foreach (var i in items)
@@ -91,7 +97,7 @@ namespace WebApplicationTEST
             return items;
         }
 
-        public static IEnumerable<Datum> FetchOrigDisplayData()
+        public static List<Datum> FetchOrigDisplayData()
         {
             var art = Repository.articlesOfDisplayOrig;
             List<Datum> data = Repository.FetchData();
@@ -162,5 +168,57 @@ namespace WebApplicationTEST
             }
             return filtered;
         }
+
+        public static IEnumerable<Datum> FetchItemsWhichNumberLessThanFour(string selection)
+        {
+            var filtered = new List<Datum>();
+            IEnumerable<Datum> items;
+            switch (selection)
+            {
+                case "accums":
+                    items = FetchAccumulatorData();
+                    foreach (var item in items)
+                    {
+                        if(item.residue <= 3)
+                        {
+                            filtered.Add(item);
+                        }
+                    }
+                    break;
+                case "disp-orig":
+                    items = FetchOrigDisplayData();
+                    foreach (var item in items)
+                    {
+                        if (item.residue <= 3)
+                        {
+                            filtered.Add(item);
+                        }
+                    }
+                    break;
+                case "disp-copy":
+                    items = FetchCopyDisplayData();
+                    foreach (var item in items)
+                    {
+                        if (item.residue <= 3)
+                        {
+                            filtered.Add(item);
+                        }
+                    }
+                    break;
+                case "main-cameras":
+                    items = FetchMainCamerasData();
+                    foreach (var item in items)
+                    {
+                        if (item.residue <= 3)
+                        {
+                            filtered.Add(item);
+                        }
+                    }
+                    break;
+            }
+
+            return filtered;
+        }
+
     }
 }

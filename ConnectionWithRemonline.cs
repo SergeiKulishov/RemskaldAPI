@@ -9,7 +9,7 @@ namespace WebApplicationTEST
 {
     public class ConnectionWithRemonline
     {
-        private static string responseToken { get; set; }
+        protected static string responseToken;
 
         public static async Task PostRequestAsync()
         {
@@ -30,7 +30,7 @@ namespace WebApplicationTEST
             {
                 using (StreamReader reader = new StreamReader(stream))
                 {
-                    string token = reader.ReadToEnd();
+                    string token = await reader.ReadToEndAsync();
                     ConnectionWithRemonline.responseToken = token;
                 }
             }
@@ -48,33 +48,30 @@ namespace WebApplicationTEST
 
         }
 
-        public static string GetPageFromRemonline(string token,int page)
+        public static async Task<string> GetPageFromRemonline(string token,int page)
         {
             string url = $"https://api.remonline.ru/warehouse/goods/28208?page={page}&token={token}";
-
             using  (var webClient = new WebClient())
             {
-                var response =  webClient.DownloadString(url);
-                
+                string response = await webClient.DownloadStringTaskAsync(url);
                 return response;
             }
-            
         }
 
         public static async Task<List<Item>> GetCollectionOfItems(int pageCount = 29){
-            List<Item> listItem = new List<Item>();
-            for (var i = 1; i <= pageCount; i++)
+            List<Item> ListItem = new List<Item>();
+            for (int i = 1; i <= pageCount; i++)
             {
-                string responceMessage = ConnectionWithRemonline.GetPageFromRemonline(await ConnectionWithRemonline.GetToken(), i);
+                string responceMessage = await ConnectionWithRemonline.GetPageFromRemonline(await ConnectionWithRemonline.GetToken(), i);
                 Item thing = JsonConvert.DeserializeObject<Item>(responceMessage);
-                listItem.Add(thing);
+                ListItem.Add(thing);
             }
-            return listItem;
+            return ListItem;
         }
 
         public static Dictionary<string,Datum> GetItemByArticle(IEnumerable<Item> ListofItems,IEnumerable<string> arrayOfArticles)
         {
-            Dictionary<string,Datum> itemsfromWarehouse = new Dictionary<string,Datum>();
+            Dictionary<string,Datum> ItemsfromWarehouse = new Dictionary<string,Datum>();
         
             foreach(var s in ListofItems)
             {
@@ -86,10 +83,11 @@ namespace WebApplicationTEST
                         foreach(string i in arrayOfArticles ){
                             if (p.article == i)
                             {
-                                itemsfromWarehouse.Add(p.article,p);    
+                                ItemsfromWarehouse.Add(p.article,p);    
                             }  
                             
                         }
+                    // Console.WriteLine(p.title);
                     }
                     catch (System.Exception)
                     {   if(p.article == null){
@@ -105,7 +103,7 @@ namespace WebApplicationTEST
                     
                 }
             }
-            return itemsfromWarehouse;
+            return ItemsfromWarehouse;
         }
 
     }
