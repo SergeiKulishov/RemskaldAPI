@@ -5,13 +5,13 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="f9e0ec91-853b-4a97-ae72-c203afd4c0fd" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.WebApplicationTEST/.idea/contentModel.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.WebApplicationTEST/.idea/indexLayout.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.WebApplicationTEST/.idea/indexLayout.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.WebApplicationTEST/.idea/modules.xml" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.WebApplicationTEST/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.WebApplicationTEST/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ApplicationContext.cs" beforeDir="false" afterPath="$PROJECT_DIR$/ApplicationContext.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ConnectionWithRemonline.cs" beforeDir="false" afterPath="$PROJECT_DIR$/ConnectionWithRemonline.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Controllers/WarehouseController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Controllers/WarehouseController.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Program.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Program.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Properties/launchSettings.json" beforeDir="false" afterPath="$PROJECT_DIR$/Properties/launchSettings.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Repository.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Repository.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.WebApplicationTEST/riderModule.iml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Startup.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Startup.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/WebApplicationTEST.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/WebApplicationTEST.csproj" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -22,17 +22,9 @@
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="IdeDocumentHistory">
-    <option name="CHANGED_PATHS">
-      <list>
-        <option value="$PROJECT_DIR$/Controllers/WarehouseController.cs" />
-        <option value="$PROJECT_DIR$/ApplicationContext.cs" />
-        <option value="$PROJECT_DIR$/Repository.cs" />
-        <option value="$PROJECT_DIR$/Program.cs" />
-        <option value="$PROJECT_DIR$/Item.cs" />
-        <option value="$PROJECT_DIR$/ConnectionWithRemonline.cs" />
-        <option value="$PROJECT_DIR$/Properties/launchSettings.json" />
-      </list>
-    </option>
+    <changedPaths>
+      <option value="$PROJECT_DIR$/Startup.cs" />
+    </changedPaths>
   </component>
   <component name="ProjectId" id="1pKhMWQRGpPmjyQ90rrQtkivAZe" />
   <component name="ProjectViewState">
@@ -41,6 +33,7 @@
   </component>
   <component name="PropertiesComponent">
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="nodejs_package_manager_path" value="npm" />
     <property name="settings.editor.selected.configurable" value="reference.settingsdialog.IDE.editor.colors.Color Scheme Font" />
@@ -89,35 +82,16 @@
       <workItem from="1614937654327" duration="240000" />
       <workItem from="1615036365146" duration="3025000" />
       <workItem from="1615208112229" duration="1609000" />
+      <workItem from="1622812178856" duration="452000" />
     </task>
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
   </component>
+  <component name="UnityProjectConfiguration" hasMinimizedUI="null" />
+  <component name="UnityUnitTestConfiguration" currentTestLauncher="NUnit" />
   <component name="VcsManagerConfiguration">
     <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="true" />
-  </component>
-  <component name="WindowStateProjectService">
-    <state width="1877" height="282" key="GridCell.Tab.0.bottom" timestamp="1615209722044">
-      <screen x="0" y="0" width="1920" height="1040" />
-    </state>
-    <state width="1877" height="282" key="GridCell.Tab.0.bottom/0.0.1920.1040/1920.0.1024.728@0.0.1920.1040" timestamp="1615209722044" />
-    <state width="1877" height="282" key="GridCell.Tab.0.center" timestamp="1615209722043">
-      <screen x="0" y="0" width="1920" height="1040" />
-    </state>
-    <state width="1877" height="282" key="GridCell.Tab.0.center/0.0.1920.1040/1920.0.1024.728@0.0.1920.1040" timestamp="1615209722043" />
-    <state width="1877" height="282" key="GridCell.Tab.0.left" timestamp="1615209722043">
-      <screen x="0" y="0" width="1920" height="1040" />
-    </state>
-    <state width="1877" height="282" key="GridCell.Tab.0.left/0.0.1920.1040/1920.0.1024.728@0.0.1920.1040" timestamp="1615209722043" />
-    <state width="1877" height="282" key="GridCell.Tab.0.right" timestamp="1615209722044">
-      <screen x="0" y="0" width="1920" height="1040" />
-    </state>
-    <state width="1877" height="282" key="GridCell.Tab.0.right/0.0.1920.1040/1920.0.1024.728@0.0.1920.1040" timestamp="1615209722044" />
-    <state x="616" y="157" key="SettingsEditor" timestamp="1615209142479">
-      <screen x="0" y="0" width="1920" height="1040" />
-    </state>
-    <state x="616" y="157" key="SettingsEditor/0.0.1920.1040/1920.0.1024.728@0.0.1920.1040" timestamp="1615209142479" />
   </component>
 </project>
