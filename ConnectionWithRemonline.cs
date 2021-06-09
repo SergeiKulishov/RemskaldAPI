@@ -44,8 +44,6 @@ namespace WebApplicationTEST
             var jsonResponceToken =  ConnectionWithRemonline.responseToken;
             ResponceToken responceToken = JsonConvert.DeserializeObject<ResponceToken>(jsonResponceToken);
             return responceToken.token;
-            
-
         }
 
         public static async Task<string> GetPageFromRemonline(string token,int page)
@@ -105,6 +103,19 @@ namespace WebApplicationTEST
             }
             return ItemsfromWarehouse;
         }
+
+        public static async Task<string> GetCashboxInfo()
+        {
+            string token = await GetToken(); 
+            string url = $"https://api.remonline.ru/cashbox/?token={token}";
+            using  (var webClient = new WebClient())
+            {
+                string response = await webClient.DownloadStringTaskAsync(url);
+                return response;
+            }
+        }
+
+        
 
     }
 }

@@ -80,5 +80,13 @@ namespace WebApplicationTEST.Controllers
             Console.WriteLine(jsondata);
             return jsondata;
         }
+
+        [HttpGet("cash-info")]
+        public async Task<string> CashInfo()
+        {
+            string info = await ConnectionWithRemonline.GetCashboxInfo();
+            System.Console.WriteLine();
+            return info;
+        }
     }
 }
