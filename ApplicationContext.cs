@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Text;
+using WebApplicationTEST.Orders;
 
 namespace WebApplicationTEST
 
@@ -9,6 +10,7 @@ namespace WebApplicationTEST
     public sealed class ApplicationContext : DbContext
     {
         public DbSet<Datum> Datums { get; set; }
+        public DbSet<Order> Orders { get; set; }
 
         public ApplicationContext()
         {

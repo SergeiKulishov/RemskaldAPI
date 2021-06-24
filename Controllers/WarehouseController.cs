@@ -1,9 +1,11 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using WebApplicationTEST.Orders;
 
 namespace WebApplicationTEST.Controllers
 {
@@ -17,16 +19,19 @@ namespace WebApplicationTEST.Controllers
             try
             {
                 Dictionary<string, Datum> itemsFromWarehouse = ConnectionWithRemonline.GetItemByArticle(await ConnectionWithRemonline.GetCollectionOfItems(), Repository.GetAllArticlesOfItemWhatWeNeed());
-                //Repository.Add(ItemsFromWarehouse);
+                List<Order> ordersFromRemonline = await ConnectionWithRemonline.GetListOfOrders();
                 try
                 {
                     Repository.Update(itemsFromWarehouse);
+                    Repository.UpdateOrders(ordersFromRemonline);
                 }
                 catch
                 {
+                    
                     Repository.Add(itemsFromWarehouse);
+                    Repository.AddOrders(ordersFromRemonline);
                 }
-                return "WarehouseItems has updated";
+                return "WarehouseItems and Orders have updated";
             }
             catch (Exception ex)
             {
@@ -96,6 +101,32 @@ namespace WebApplicationTEST.Controllers
                 Console.WriteLine($"Name : {C.Value.title}, Cash : {C.Value.balance} , ID : {C.Key}");
             }
             return info;
+        }
+
+        [HttpGet("all-orders")]
+        public ActionResult<string> GetOrders()
+        {
+            var allorders = Repository.FetchOrders();
+            string jsondata = JsonConvert.SerializeObject(allorders);
+            return jsondata;
+        }
+
+        [HttpGet("test-orders")]
+        public async Task<string> TestOrders()
+        {
+            var ordersFromRemonline2 = await ConnectionWithRemonline.GetOrders();
+            var bran = await ConnectionWithRemonline.GetLacations();
+            var orders2 = JsonConvert.DeserializeObject<Orders.Root>(ordersFromRemonline2);
+            Console.WriteLine(orders2.page);
+            Console.WriteLine(orders2.count);
+            foreach (var i in orders2.data) 
+            {
+                Console.WriteLine($"Клиент :{i.client.name} -- Гаджет: {i.model} -- Статус {i.status.name} ");
+            }
+
+            return bran;
+           
+
         }
     }
 }

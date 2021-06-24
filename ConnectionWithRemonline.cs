@@ -4,6 +4,8 @@ using System.IO;
 using System.Threading.Tasks;
 using Newtonsoft.Json;
 using System.Collections.Generic;
+using WebApplicationTEST.Orders;
+using System.Linq;
 
 namespace WebApplicationTEST
 {
@@ -115,7 +117,53 @@ namespace WebApplicationTEST
             }
         }
 
-        
+       
+        public static async Task<string> GetOrders()
+        {
+            string token = await GetToken();
+            string url = $"https://api.remonline.ru/order/"+$"?token={token}&branches[]=22732&statuses[]=115411&statuses[]=115410&statuses[]=310524&statuses[]=395193&statuses[]=115412" +
+                $"&statuses[]=115438&statuses[]=117552&statuses[]=143928&statuses[]=161929&statuses[]=343366&statuses[]=115414&statuses[]=117556&statuses[]=115413&statuses[]=123194";
+
+
+            using (var webClient = new WebClient())
+            {
+                string response = await webClient.DownloadStringTaskAsync(url);
+                return response;
+            }
+        }
+
+        public static async Task<string> GetStatuses()
+        {
+            string token = await GetToken();
+            string url = $"https://api.remonline.ru/statuses/?token={token}";
+
+
+            using (var webClient = new WebClient())
+            {
+                string response = await webClient.DownloadStringTaskAsync(url);
+                return response;
+            }
+        }
+
+        public static async Task<string> GetLacations()
+        {
+            string token = await GetToken();
+            string url = $"https://api.remonline.ru/branches/?token={token}";
+
+
+            using (var webClient = new WebClient())
+            {
+                string response = await webClient.DownloadStringTaskAsync(url);
+                return response;
+            }
+        }
+
+        public static async Task<List<Order>> GetListOfOrders()
+        {
+            var OrdersJson = await GetOrders();
+            var orders = JsonConvert.DeserializeObject<Orders.Root>(OrdersJson);
+            return (orders.data).ToList();
+        }
 
     }
 }
