@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using Newtonsoft.Json;
+using RemskaldAPI.Statuses;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -114,17 +115,14 @@ namespace WebApplicationTEST.Controllers
         [HttpGet("test-orders")]
         public async Task<string> TestOrders()
         {
-            var ordersFromRemonline2 = await ConnectionWithRemonline.GetOrders();
-            var bran = await ConnectionWithRemonline.GetLacations();
-            var orders2 = JsonConvert.DeserializeObject<Orders.Root>(ordersFromRemonline2);
-            Console.WriteLine(orders2.page);
-            Console.WriteLine(orders2.count);
-            foreach (var i in orders2.data) 
-            {
-                Console.WriteLine($"Клиент :{i.client.name} -- Гаджет: {i.model} -- Статус {i.status.name} ");
-            }
+            var ordersFromRemonline2 = await ConnectionWithRemonline.GetStatuses();
 
-            return bran;
+            var statuses = JsonConvert.DeserializeObject<Statuses>(ordersFromRemonline2);
+            
+            foreach(var stat in statuses.Data ){
+                System.Console.WriteLine($"Название: {stat.Name} , ID:{stat.Id}, Группа: {stat.Group}, Цвет: {stat.Color}");
+            }
+            return ordersFromRemonline2; 
            
 
         }
