@@ -93,11 +93,11 @@ namespace WebApplicationTEST.Controllers
             string info = await ConnectionWithRemonline.GetCashboxInfo();
             var Boxes = Newtonsoft.Json.JsonConvert.DeserializeObject<Cashbox.CashboxesFromRemOnline>(info);
             Dictionary<int, Cashbox.Cashbox> GSCashboxes = new Dictionary<int, Cashbox.Cashbox>();
-            foreach(var box in Boxes.data)
+            foreach (var box in Boxes.data)
             {
                 GSCashboxes.Add(box.id, box);
             }
-            foreach(KeyValuePair<int,Cashbox.Cashbox> C in GSCashboxes)
+            foreach (KeyValuePair<int, Cashbox.Cashbox> C in GSCashboxes)
             {
                 Console.WriteLine($"Name : {C.Value.title}, Cash : {C.Value.balance} , ID : {C.Key}");
             }
